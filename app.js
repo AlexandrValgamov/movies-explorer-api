@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const router = require('./routes');
 
 const {
   PORT = 3000,
@@ -9,6 +10,8 @@ const {
 const app = express();
 
 mongoose.connect(MONGO_URL);
+
+app.use(router);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
