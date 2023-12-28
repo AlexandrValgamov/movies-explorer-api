@@ -1,4 +1,8 @@
 const userRouter = require('express').Router();
+const {
+  updateUser,
+  getUserInfo,
+} = require('../controllers/users');
 
 userRouter.get('/me', getUserInfo);
 userRouter.patch('/me', updateUser); // добавить userDataValidation
