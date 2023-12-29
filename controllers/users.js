@@ -39,7 +39,7 @@ const updateUser = async (req, res, next) => {
 
 const createUser = async (req, res, next) => {
   const {
-    email, password, name,
+    name, email, password,
   } = req.body;
   try {
     const hash = await bcrypt.hash(password, 10);

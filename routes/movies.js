@@ -1,8 +1,13 @@
 const userRouter = require('express').Router();
+const {
+  getMovies,
+  createMovie,
+  removeMovie,
+} = require('../controllers/movies');
 
 userRouter.get('/', getMovies);
 userRouter.post('/', createMovie);
-userRouter.delete('/:_id', removeMovie); // добавить DataValidation
+userRouter.delete('/:movieId', removeMovie); // добавить DataValidation
 
 module.exports = userRouter;
 
