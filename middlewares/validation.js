@@ -5,7 +5,7 @@ const signupValidation = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
-    name: Joi.string().min(2).max(30),
+    name: Joi.string().required().min(2).max(30),
   }),
 });
 
@@ -38,9 +38,17 @@ const idValidation = celebrate({
   }),
 });
 
+const userDataValidation = celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    name: Joi.string().required().min(2).max(30),
+  }),
+});
+
 module.exports = {
   signinValidation,
   signupValidation,
   movieDataValidation,
   idValidation,
+  userDataValidation,
 };

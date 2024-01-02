@@ -51,11 +51,11 @@ const createMovie = async (req, res, next) => {
 };
 
 const removeMovie = async (req, res, next) => {
-  const { movieId } = req.params;
+  const { id } = req.params;
   const userId = req.user._id;
   try {
     const checkMovie = await Movie
-      .findById(movieId)
+      .findById(id)
       .orFail(new NotFoundError('Карточка с указанным _id не найдена'));
     if (String(checkMovie.owner) !== userId) throw new ForbiddenError('Нельзя удалять карточки других пользователей');
 
