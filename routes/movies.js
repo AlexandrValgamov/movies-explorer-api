@@ -4,20 +4,13 @@ const {
   createMovie,
   removeMovie,
 } = require('../controllers/movies');
+const {
+  movieDataValidation,
+  idValidation,
+} = require('../middlewares/validation');
 
 userRouter.get('/', getMovies);
-userRouter.post('/', createMovie);
-userRouter.delete('/:movieId', removeMovie); // добавить DataValidation
+userRouter.post('/', movieDataValidation, createMovie);
+userRouter.delete('/:id', idValidation, removeMovie);
 
 module.exports = userRouter;
-
-// # возвращает все сохранённые текущим пользователем фильмы
-// GET /movies
-
-// # создаёт фильм с переданными в теле
-// # country, director, duration, year, description, image, trailer, nameRU, nameEN и
-// thumbnail, movieId
-// POST /movies
-
-// # удаляет сохранённый фильм по id
-// DELETE /movies/_id

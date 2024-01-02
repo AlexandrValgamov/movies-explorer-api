@@ -12,6 +12,7 @@ const getMovies = async (req, res, next) => {
 };
 
 const createMovie = async (req, res, next) => {
+  const userId = req.user._id;
   try {
     const {
       country,
@@ -20,11 +21,13 @@ const createMovie = async (req, res, next) => {
       year,
       description,
       image,
-      trailer,
+      trailerLink,
+      thumbnail,
+      movieId,
       nameRU,
       nameEN,
-      thumbnail,
     } = req.body;
+
     const movie = await Movie.create({
       country,
       director,
@@ -32,10 +35,12 @@ const createMovie = async (req, res, next) => {
       year,
       description,
       image,
-      trailer,
+      trailerLink,
+      thumbnail,
+      movieId,
       nameRU,
       nameEN,
-      thumbnail,
+      owner: userId,
     });
     res
       .status(201)

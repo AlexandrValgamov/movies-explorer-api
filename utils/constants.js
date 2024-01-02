@@ -3,6 +3,7 @@ const NOT_FOUND = 404;
 const SERVER_ERROR = 500;
 const UNAUTHORIZED = 401;
 const MONGO_DUPLACATE_ERROR_CODE = 11000;
+const regex = /https?:\/\/(www\.)?[\w-]+\.[a-zA-Z\d._~:?#[\]/@!$&'()*+,;=-]{2,}#?/;
 
 module.exports = {
   BAD_REQUEST,
@@ -10,4 +11,5 @@ module.exports = {
   SERVER_ERROR,
   UNAUTHORIZED,
   MONGO_DUPLACATE_ERROR_CODE,
+  regex,
 };
