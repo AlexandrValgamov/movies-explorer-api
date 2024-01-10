@@ -6,7 +6,8 @@ const MONGO_DUPLACATE_ERROR_CODE = 11000;
 const regex = /https?:\/\/(www\.)?[\w-]+\.[a-zA-Z\d._~:?#[\]/@!$&'()*+,;=-]{2,}#?/;
 
 const allowedCors = [
-  // 'https://alexandrv.nomoredomainsmonster.ru',
+  'https://alexvmovie.nomoredomainsmonster.ru',
+  'http://localhost:3000',
 ];
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 

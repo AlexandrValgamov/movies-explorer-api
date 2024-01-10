@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const helmet = require('helmet');
+const limiter = require('./middlewares/limiter');
 const { signupValidation, signinValidation } = require('./middlewares/validation');
 const router = require('./routes');
 const { createUser, login } = require('./controllers/users');
@@ -18,6 +20,8 @@ const app = express();
 
 mongoose.connect(MONGO_URL);
 
+app.use(helmet());
+app.use(limiter);
 app.use(express.json());
 app.use(corsHandler);
 app.use(requestLogger);
