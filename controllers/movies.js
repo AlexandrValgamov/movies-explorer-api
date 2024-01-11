@@ -5,9 +5,9 @@ const NotFoundError = require('../errors/not-found-err');
 const ForbiddenError = require('../errors/forbidden-err');
 
 const getMovies = async (req, res, next) => {
-  const userId = req.user._id;
+  const owner = req.user._id;
   try {
-    const movies = await Movie.find({ userId });
+    const movies = await Movie.find({ owner });
     res.send(movies);
   } catch (error) {
     next(error);
