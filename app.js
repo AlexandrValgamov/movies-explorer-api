@@ -20,11 +20,11 @@ const app = express();
 
 mongoose.connect(MONGO_URL);
 
-app.use(helmet());
+app.use(requestLogger);
 app.use(limiter);
+app.use(helmet());
 app.use(express.json());
 app.use(corsHandler);
-app.use(requestLogger);
 
 app.post('/signup', signupValidation, createUser);
 app.post('/signin', signinValidation, login);

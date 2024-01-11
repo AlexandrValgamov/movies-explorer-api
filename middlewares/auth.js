@@ -13,7 +13,13 @@ const auth = (req, res, next) => {
     const validToken = token.replace('Bearer ', '');
     payload = jwt.verify(validToken, NODE_ENV ? JWT_SECRET : 'dev_secret');
   } catch (error) {
-    next(new UnauthorizedError('С токеном что-то не так'));
+    if (error instanceof jwt.TokenExpiredError) {
+      return next(new UnauthorizedError('Истек срок действия токена'));
+    }
+    if (error instanceof jwt.JsonWebTokenError) {
+      return next(new UnauthorizedError('Ошибка валидации токена'));
+    }
+    return next(new UnauthorizedError('С токеном что-то не так'));
   }
 
   req.user = payload;
