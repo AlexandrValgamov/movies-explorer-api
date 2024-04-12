@@ -8,6 +8,7 @@ const regex = /https?:\/\/(www\.)?[\w-]+\.[a-zA-Z\d._~:?#[\]/@!$&'()*+,;=-]{2,}#
 const allowedCors = [
   'https://alexvmovie.nomoredomainsmonster.ru',
   'http://localhost:3000',
+  'http://localhost:5173',
 ];
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
