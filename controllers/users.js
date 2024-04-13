@@ -4,9 +4,9 @@ const User = require('../models/User');
 const { MONGO_DUPLACATE_ERROR_CODE } = require('../utils/constants');
 const BadRequestError = require('../errors/bad-request-err');
 const NotFoundError = require('../errors/not-found-err');
-const UnauthorizedError = require('../errors/unauthorized-err');
 const ConflictError = require('../errors/conflict-err');
 const generateToken = require('../utils/jwt');
+const ForbiddenError = require('../errors/forbidden-err');
 
 const ValidationErrorHandler = (error, next) => {
   const validationErrors = Object.values(error.errors).map((err) => err.message);
@@ -89,14 +89,14 @@ const login = async (req, res, next) => {
       .orFail();
     const matched = await bcrypt.compare(String(password), user.password);
     if (!matched) {
-      throw new UnauthorizedError('Неправильные почта или пароль');
+      throw new ForbiddenError('Неправильные почта или пароль');
     }
 
     const token = generateToken({ _id: user._id });
     res.send({ token });
   } catch (error) {
     if (error instanceof mongoose.Error.DocumentNotFoundError) {
-      return next(new UnauthorizedError('Неправильные почта или пароль'));
+      return next(new ForbiddenError('Неправильные почта или пароль'));
     }
     next(error);
   }

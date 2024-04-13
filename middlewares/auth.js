@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const UnauthorizedError = require('../errors/unauthorized-err');
+const BadRequestError = require('../errors/bad-request-err');
 
 const { JWT_SECRET, NODE_ENV } = process.env;
 const auth = (req, res, next) => {
@@ -7,7 +8,7 @@ const auth = (req, res, next) => {
   try {
     const token = req.headers.authorization;
     if (!token) {
-      throw new UnauthorizedError('С токеном что-то не так');
+      throw new BadRequestError('С токеном что-то не так');
     }
 
     const validToken = token.replace('Bearer ', '');
